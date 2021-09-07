@@ -62,7 +62,7 @@ public class Lista {
     public void imprimirRecursivo() {
         if (!estaVacia()) {
             Nodo recorrer = primero;
-            recorridoRecursivo(recorrer, 0);         
+            recorridoRecursivo(recorrer);         
             System.out.println("");
         } else {
             System.out.println("Lista Vacia");
@@ -72,27 +72,23 @@ public class Lista {
     public void sumarRecursivo() {
         if (!estaVacia()) {
             Nodo recorrer = primero;
-            System.out.println("La sumatoria es: "+recorridoRecursivoSuma(recorrer, 0));            
+            System.out.println("La sumatoria es: "+recorridoRecursivoSuma(recorrer));            
         } else {
             System.out.println("Lista Vacia");
         }
     }
     
-    public void recorridoRecursivo (Nodo l, int i) {
-        int t = tam()-1;        
-        if (i == t) { 
-            System.out.println ("Ultimo elemento..."+l.getDatos()); 
-        } else {
-            System.out.println("Leyendo... " + l.getDatos());
-            recorridoRecursivo(l.getSiguiente(), i+1);
+    private void recorridoRecursivo (Nodo nodo) {        
+        if(nodo != null){
+            System.out.println("Leyendo... " + nodo.getDatos());
+            recorridoRecursivo(nodo.getSiguiente());            
         }       
     }
 
-    public int recorridoRecursivoSuma (Nodo l, int i) {        
-        int t = tam();        
-        if (i != t) {            
-            res = res + l.getDatos();
-            recorridoRecursivoSuma(l.getSiguiente(), i+1);            
+    private int recorridoRecursivoSuma (Nodo nodo) {        
+        if(nodo != null){           
+            res = res + nodo.getDatos();
+            recorridoRecursivoSuma(nodo.getSiguiente());            
         }
         return res;
     }    
